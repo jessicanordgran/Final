@@ -3,17 +3,24 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <!--ToDo: Create a router-link that goes to '/' root, add class navbar-brand and add Stock Trader text-->
+                <router-link to="/" class="navbar-band">Stock Trader</router-link>
+
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <!--ToDo: Create router-link that goes to '/portfolio'
                         <!--ToDo: set activeClass to "active", add tag attribute set to li, and add Portfolio text-->
+                    <router-link to="/portfolio" tag="li" active-class="active"><a>Portfolio</a></router-link>
 
                     <!--ToDo: Create router-link that goes to '/stocks'
                         <!--ToDo: set activeClass to "active", add tag attribute set to li, and add Stocks text-->
+                    <router-link to="/stocks" tag="li" active-class="active" exact><a>Stocks</a></router-link>
+
                 </ul>
+
                 <strong class="navbar-text navbar-right">Funds:
                     <!--ToDo: Call funds computed function and pipe the currency filter that is created in main.js-->
+                 {{funds | currence}}
                 </strong>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -23,6 +30,7 @@
 
                     <!--ToDo: Inside <li> Bind to class using :class that passes an object {} called open and set it to isDropdownOpen-->
                         <!--ToDo: Add click event that toggles isDropdownOpen to true and false-->
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Save & Load <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -40,16 +48,20 @@
 
 <script>
     //ToDo: Import mapActions from vuex
-
+    import mapAction from 'vuex'
     export default {
         data() {
           return {
               //ToDo: Create data object called isDropdownOpen and set it to false
+              isDropdownOpen: false
           }
         },
         computed: {
         //ToDo: Create a computed function called funds
             //ToDo: Have funds() return this.$store.getters.funds
+            funds(){
+                return this.$store.getters.funds
+            }
         },
         methods: {
             //ToDo: Create ...mapActions method
@@ -58,6 +70,9 @@
 
             //ToDo: Create endDay method
                 //ToDo: Call randomizeStocks()
+            endDay(){
+                randomizedStocks()
+            }
 
             //ToDo: Create SaveData method
                 //ToDo: Create const called data that holds an object
@@ -68,6 +83,7 @@
 
             //ToDo: Create loadData method
                 //ToDo: Call fetchData()
+
         }
     }
 </script>
