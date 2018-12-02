@@ -1,13 +1,17 @@
   //ToDo: Import vue and name it Vue
 import Vue from 'vue'
   //ToDo: Import vue-router and name it VueRouter
+
 import VueRouter from 'vue-router'
   //ToDo: Import vue-resource and name it VueResource
+
 import VueResource from 'vue-resource'
   //ToDo: Import App.vue and name it App
+
 import App from 'App.vue'
   //ToDo: Import routes.js and use the {} passing routes
 import {routes} from 'routes.js'
+
   //ToDo: Import store/store.js and name it store
 import store from 'store/store.js'
 
