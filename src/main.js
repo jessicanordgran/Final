@@ -16,19 +16,19 @@ import {routes} from 'routes.js'
 import store from 'store/store.js'
 
 //ToDo Initialize VueRouter using Vue.use()
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 //ToDo Initialize VueResource using Vue.use()
-Vue.use(VueResource)
+Vue.use(VueResource);
 
 
 //ToDo: Set Equal to your Firebase Database URL
-Vue.http.options.root = 'https://final-95fc6.firebaseio.com/'
+Vue.http.options.root = 'https://final-95fc6.firebaseio.com/';
 
 
 Vue.filter('currency', (value) => {
   //ToDo: Return value.toLocalString(), Add $ sign before the value
-    return '$' + value.toLocalString()
+    return '$' + value.toLocalString();
 });
 
 const router = new VueRouter({
@@ -45,4 +45,4 @@ new Vue({
     store,
     //ToDo: Pass store constant to vue application,
   render: h => h(App)
-})
+});
