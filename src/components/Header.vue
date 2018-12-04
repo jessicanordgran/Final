@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <!--ToDo: Create a router-link that goes to '/' root, add class navbar-brand and add Stock Trader text-->
-                <router-link to="/" class="navbar-band">Stock Trader</router-link>
+                <router-link to="/" class="navbar-brand">Stock Trader</router-link>
 
             </div>
             <div class="collapse navbar-collapse">
@@ -75,7 +75,7 @@
             //ToDo: Create endDay method
                 //ToDo: Call randomizeStocks()
             endDay(){
-                randomizedStocks()
+                this.randomizeStocks()
 
             },
 
@@ -87,16 +87,16 @@
                 //ToDo: Outside the data object use $http, using .put pass 'data.json' and the data object
             saveData(){
                 const data = ({
-                    funds: $store.getters.funds(),
-                    stockPortfolio: $store.getters.stockPortfoilio(),
-                    stocks: $store.getters.stocks(),
+                    funds: this.$store.getters.funds,
+                    stockPortfolio: this.$store.getters.stockPortfolio,
+                    stocks: this.$store.getters.stocks,
                 });
                 this.$http.put('data.json', data)
             },
             //ToDo: Create loadData method
                 //ToDo: Call fetchData()
             loadData(){
-                fetchData()
+                this.fetchData()
             }
         }
     }

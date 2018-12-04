@@ -5,7 +5,7 @@
                 <h3 class="panel-title">
                     <!--ToDo: Display the stock.name data object-->
                     <!--ToDo: Inside <small> tags display Price: stock.price-->
-                    {{stock.name}} <small> (Price: {{stock.price}})</small>
+                    {{ stock.name }} <small> (Price: {{ stock.price }})</small>
 
                 </h3>
             </div>
@@ -14,7 +14,7 @@
                     <!--ToDo: Inside input use v-model.number and pass quantity-->
                         <!--ToDo: Bind to class using : and pass object called danger that takes in insufficientQuantity-->
                     <input
-                        v-model.number="{quantity}"
+                        v-model.number="quantity"
                         :class={danger:insufficientFunds}
                             type="number"
                             class="form-control"
@@ -23,7 +23,7 @@
                 <div class="pull-right">
                     <!--ToDo: Inside the button add a click event that calls buyStock-->
                     <!--ToDo: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
-                    <button class="btn btn-success" @click="buyStock" :disabled="(insufficientFunds || quantity >= 0 || !Number.isInteger(quantity))">
+                    <button class="btn btn-success" @click="buyStock" :disabled="(insufficientFunds || quantity <= 0 || !Number.isInteger(quantity))">
                         <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Buy'-->
                         {{insufficientFunds ? 'Not Enough' : 'Buy'}}
                     </button>
@@ -42,7 +42,7 @@
 <script>
     export default {
         //ToDo: Set props equal to stock using array syntax
-        props: stock['stock'],
+        props: ["stock"],
 
         data() {
             return {
@@ -54,7 +54,7 @@
             //ToDo: Create a computed function called funds
                 //ToDo: Have funds() return $store.getters.funds
             funds(){
-                return $store.getters.funds();
+                return this.$store.getters.funds;
             },
 
             //ToDo: Create a computed function called insufficientFunds
@@ -75,7 +75,7 @@
                     stockPrice: this.stock.price,
                     quantity: this.quantity,
                 };
-                return this.$store.dispatch('buyStock', order);
+                this.$store.dispatch("buyStock", order);
                 this.quantity = 0;
             }
             //ToDo: Outside the data object $store.dispatch() passing 'buyStock' and order

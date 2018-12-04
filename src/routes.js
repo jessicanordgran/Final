@@ -7,9 +7,9 @@ import Stocks from './components/stocks/Stocks.vue'
 
 export const routes = [
     //ToDo: Create Route for Home Component with root (/) path
-    {path: '/', components: Home, name:'home'},
+    {path: '/', component: Home},
     //ToDo: Create Route for Portfolio Component
-    {path: '/portfolio', components: Portfolio, name:'portfolio'},
+    {path: '/portfolio', component: Portfolio},
     //ToDo: Create Route for Stocks Component
-    {path: '/stocks', components: Stocks, name:'stocks'}
+    {path: '/stocks', component: Stocks}
 ];

@@ -27,7 +27,7 @@
 
         //ToDo: On page creation dispatch 'initStocks' to the vuex $store
         created() {
-            this.$store('initStocks')
+            this.$store.dispatch('initStocks')
         }
     }
 </script>

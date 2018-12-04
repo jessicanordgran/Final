@@ -4,7 +4,7 @@
 const state = {
     funds: 10000,
     stocks: []
-}
+};
 
 //ToDo: Create const called mutations that is a data object{}
     //ToDo: Inside mutations object create a vuex method called 'BUY_STOCK' that takes four parameters (state, {stockId, quantity, stockPrice}
@@ -13,14 +13,17 @@ const state = {
         //ToDo: Else push id: stockId and quantity: quantity to state.stocks
         //ToDo: Set state.funds -= stockPrice * quantity
 const mutations = {
-    BUY_STOCK(state, {stockId, quantity, stockPrice}){
-        const record = state.stocks.find(element => element.id === stockId);
+    'BUY_STOCK' (state, {stockId, quantity, stockPrice}){
+        const record = state.stocks.find(element => element.id == stockId);
 
         if(record){
             record.quantity += quantity
         }
         else {
-            state.stocks.push(stockId, quantity);
+            state.stocks.push({
+                id: stockId,
+                quantity: quantity
+            });
             state.funds -= stockPrice * quantity;
         }
     },
@@ -31,28 +34,25 @@ const mutations = {
     //ToDo: Else set state.stocks.splice(state.stocks.indexOf(record, 1))
     //ToDo: Set state.funds += stockPrice * quantity
 
-    SELL_STOCK(state, {stockId, quantity, stockPrice}){
-        const record = state.stocks.find(element => element.id === stockId);
+    'SELL_STOCK' (state, {stockId, quantity, stockPrice}){
+        const record = state.stocks.find(element => element.id == stockId);
 
         if(record.quantity > quantity){
             record.quantity -= quantity
         }
         else{
-            state.stocks.splice(state.stocks.indexOf(record, 1));
-            state.funds += stockPrice * quantity;
+            state.stocks.splice(state.stocks.indexOf(record), 1);
+
         }
+        state.funds += stockPrice * quantity;
     },
 
     //ToDo: Inside mutations object create a vuex method called 'SET_PORTFOLIO' that takes two parameters (state, portfolio}
     //ToDo: Set state.funds equal t portfolio.funds
     //ToDo: Set state.stocks equal to portfolio.stockPortfolio if portfolio.stockPortfolio else [] (Use if else using ? and :)
 
-    SET_PORTFOLIO({state, portfolio}){
+    'SET_PORTFOLIO' (state, portfolio){
         state.funds = portfolio.funds;
-
-        if(portfolio.stockPortfolio){
-            state.stocks = portfolio.stockPortfolio;
-        }
         state.stocks = portfolio.stockPortfolio ? portfolio.stockPortfolio : [];
     }
 }
@@ -78,22 +78,22 @@ const actions = {
             //ToDo: Set price to record.price
 const getters = {
     stockPortfolio: (state, getters) => {
-        state.stocks.map(stack);
-        const record = state.stocks.find(element => element.id === stockId);
-
-        return {
-            id: stock.id,
-            quantity: stock.quantity,
-            name: record.name,
-            price: record.price
-        }
+        return state.stocks.map(stock => {
+            const record = getters.stocks.find(element => element.id == stock.id);
+            return {
+                id: stock.id,
+                quantity: stock.quantity,
+                name: record.name,
+                price: record.price
+            }
+        })
     },
 
 
     //ToDo: Create funds method that passes state
     //ToDo: Return state.funds
-    funds({state}) {
-        return state.funds
+    funds(state) {
+        return state.funds;
     }
 
 };

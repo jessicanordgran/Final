@@ -23,7 +23,7 @@
                 <div class="pull-right">
                     <!--ToDo: Inside the button add a click event that calls sellStock-->
                         <!--ToDo: Bind to disabled using : and set it equal to insufficientQuantity || quantity is less than or equal to 0 || !Number.isInteger(quantity)-->
-                    <button class="btn btn-success" @click="sellStock" :disabled="insufficientQuantity || quantity >=0 || !Number.isInteger(quantity)">
+                    <button class="btn btn-success" @click="sellStock" :disabled="insufficientQuantity || quantity <=0 || !Number.isInteger(quantity)">
                         <!--ToDo: Display insufficientQuantity data object and add if using ? 'Not Enough' else 'Sell'-->
                         {{insufficientQuantity ? 'Not Enough' : 'Sell' }}
 
@@ -42,11 +42,11 @@
 
 <script>
     //ToDo: Import mapActions from vuex
-    import mapActions from 'vuex'
+    import {mapActions} from 'vuex'
 
     export default {
         //ToDo: Set props equal to stock using array syntax
-        props: stock['stock'],
+        props: ['stock'],
 
         data() {
             return {
@@ -65,7 +65,7 @@
             //ToDo: Create ...mapActions method
                 //ToDo: Call placeSellOrder: 'sellStock'
             ...mapActions({
-                placeSellOrder: 'sellStocks'
+                placeSellOrder: 'sellStock'
         }),
 
             //ToDo: Create sellStock method
@@ -81,7 +81,7 @@
                     stockPrice: this.stock.price,
                     quantity: this.quantity,
                 };
-                this.placeSellOrder();
+                this.placeSellOrder(order);
                 this.quantity = 0;
 
             }
